@@ -122,6 +122,7 @@ app.post("/users", async (req, res) => {
         // Hash the password
         const hashedPasswrod = await bcrypt.hash(password, SALTROUNDS);
 
+        console.log("About to insert a user into the database.");
         const result = await pool.query(
             "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
             [username, email, hashedPasswrod]
