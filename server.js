@@ -126,6 +126,7 @@ app.post("/users", async (req, res) => {
             "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
             [username, email, hashedPasswrod]
         );
+        console.log('User inserted into database:', result.rows[0]);
         res.status(201).json(result.rows[0]);
     } catch (error) {
         console.error("Error registering user", error.message);
